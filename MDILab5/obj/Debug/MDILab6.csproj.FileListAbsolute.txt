@@ -1,0 +1,12 @@
+C:\Dropbox\BCIT\Visual Studio\MDILab5\MDILab5\bin\Debug\MDILab5.exe.config
+C:\Dropbox\BCIT\Visual Studio\MDILab5\MDILab5\obj\Debug\MDILab5.exe
+C:\Dropbox\BCIT\Visual Studio\MDILab5\MDILab5\obj\Debug\MDILab5.pdb
+C:\Dropbox\BCIT\Visual Studio\MDILab5\MDILab5\bin\Debug\MDILab5.exe
+C:\Dropbox\BCIT\Visual Studio\MDILab5\MDILab5\bin\Debug\MDILab5.pdb
+C:\Dropbox\BCIT\Visual Studio\MDILab5\MDILab5\obj\Debug\MDILab6.csprojResolveAssemblyReference.cache
+C:\Dropbox\BCIT\Visual Studio\MDILab5\MDILab5\obj\Debug\MDILab5.ChildForm.resources
+C:\Dropbox\BCIT\Visual Studio\MDILab5\MDILab5\obj\Debug\MDILab5.WebImageDialog.resources
+C:\Dropbox\BCIT\Visual Studio\MDILab5\MDILab5\obj\Debug\MDILab5.NewImageDialog.resources
+C:\Dropbox\BCIT\Visual Studio\MDILab5\MDILab5\obj\Debug\MDILab5.ParentForm.resources
+C:\Dropbox\BCIT\Visual Studio\MDILab5\MDILab5\obj\Debug\MDILab5.Properties.Resources.resources
+C:\Dropbox\BCIT\Visual Studio\MDILab5\MDILab5\obj\Debug\MDILab6.csproj.GenerateResource.Cache
