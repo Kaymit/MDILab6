@@ -66,5 +66,10 @@ namespace MDILab6
         {
             this.LayoutMdi(MdiLayout.TileVertical);
         }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
