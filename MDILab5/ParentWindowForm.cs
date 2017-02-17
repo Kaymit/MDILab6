@@ -19,23 +19,15 @@ namespace MDILab6
             InitializeComponent();
         }
 
-        public void changeImageSize(Size size)
-        {
-            imgSize = size;
-        }
-
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
             NewImageDialog newImage = new NewImageDialog();
             if (newImage.ShowDialog() == DialogResult.OK)
             {
-                //switch to check size of new image
-                {
-
-                }
-                //set as parent
-                ChildForm ch = new MDILab6.ChildForm();
-                ch.MdiParent = this;
+                
+                ChildForm ch = new ChildForm();
+                ch.ChildImg = new Bitmap(newImage.Size.Height, newImage.Size.Width);
+                ch.MdiParent = this; //set as parent
                 ch.Show();
             }
         }

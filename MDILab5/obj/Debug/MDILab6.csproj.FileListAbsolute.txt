@@ -10,3 +10,15 @@ C:\Dropbox\BCIT\Visual Studio\MDILab5\MDILab5\obj\Debug\MDILab5.NewImageDialog.r
 C:\Dropbox\BCIT\Visual Studio\MDILab5\MDILab5\obj\Debug\MDILab5.ParentForm.resources
 C:\Dropbox\BCIT\Visual Studio\MDILab5\MDILab5\obj\Debug\MDILab5.Properties.Resources.resources
 C:\Dropbox\BCIT\Visual Studio\MDILab5\MDILab5\obj\Debug\MDILab6.csproj.GenerateResource.Cache
+D:\Dropbox\BCIT\Visual Studio\MDILab6\MDILab5\bin\Debug\MDILab5.exe.config
+D:\Dropbox\BCIT\Visual Studio\MDILab6\MDILab5\obj\Debug\MDILab5.exe
+D:\Dropbox\BCIT\Visual Studio\MDILab6\MDILab5\obj\Debug\MDILab5.pdb
+D:\Dropbox\BCIT\Visual Studio\MDILab6\MDILab5\obj\Debug\MDILab6.csprojResolveAssemblyReference.cache
+D:\Dropbox\BCIT\Visual Studio\MDILab6\MDILab5\obj\Debug\MDILab6.ChildForm.resources
+D:\Dropbox\BCIT\Visual Studio\MDILab6\MDILab5\obj\Debug\MDILab6.WebImageDialog.resources
+D:\Dropbox\BCIT\Visual Studio\MDILab6\MDILab5\obj\Debug\MDILab6.NewImageDialog.resources
+D:\Dropbox\BCIT\Visual Studio\MDILab6\MDILab5\obj\Debug\MDILab6.ParentWindowForm.resources
+D:\Dropbox\BCIT\Visual Studio\MDILab6\MDILab5\obj\Debug\MDILab5.Properties.Resources.resources
+D:\Dropbox\BCIT\Visual Studio\MDILab6\MDILab5\obj\Debug\MDILab6.csproj.GenerateResource.Cache
+D:\Dropbox\BCIT\Visual Studio\MDILab6\MDILab5\bin\Debug\MDILab5.exe
+D:\Dropbox\BCIT\Visual Studio\MDILab6\MDILab5\bin\Debug\MDILab5.pdb

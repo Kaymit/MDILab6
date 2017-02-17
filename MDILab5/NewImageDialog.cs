@@ -12,24 +12,37 @@ namespace MDILab6
 {
     public partial class NewImageDialog : Form
     {
+        private Size imgSize;
         public NewImageDialog()
         {
             InitializeComponent();
         }
 
+        public Size ImgSize
+        {
+            get
+            {
+                return imgSize;
+            }
+            set
+            {
+                imgSize = value;
+            }
+        }
+
         private void radioButtonSmall_CheckedChanged(object sender, EventArgs e)
         {
-            changeImageSize(new Size(640, 480));
+            ImgSize = new Size(640, 480);
         }
 
         private void radioButtonMedium_CheckedChanged(object sender, EventArgs e)
         {
-
+            ImgSize = new Size(800, 600);
         }
 
         private void radioButtonLarge_CheckedChanged(object sender, EventArgs e)
         {
-
+            ImgSize = new Size(1024, 768);
         }
     }
 }

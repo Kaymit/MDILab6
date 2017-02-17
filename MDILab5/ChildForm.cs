@@ -15,17 +15,26 @@ namespace MDILab6
         //image field and property
         Graphics g;
         bool isNewImage = true; //flag to check if new or existing image
-        private Image myImage;
-        public Image MyImage
+        private Bitmap childImg;
+        private Size imgSize;
+        public Bitmap ChildImg
         {
             get
             {
-                return myImage;
+                return childImg;
             }
             set
             {
-                myImage = value;
-                this.AutoScrollMinSize = myImage.Size;
+                childImg = value;
+                this.AutoScrollMinSize = childImg.Size;
+            }
+        }
+
+        public Size ImgSize
+        {
+            set
+            {
+                imgSize = value;
             }
         }
 
