@@ -26,7 +26,7 @@ namespace MDILab6
             {
                 
                 ChildForm ch = new ChildForm();
-                ch.ChildImg = new Bitmap(newImage.Size.Height, newImage.Size.Width);
+                ch.ChildImg = new Bitmap(newImage.ImgSize.Height, newImage.ImgSize.Width);
                 ch.MdiParent = this; //set as parent
                 ch.Show();
             }
