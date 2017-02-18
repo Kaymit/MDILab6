@@ -28,13 +28,23 @@ namespace MDILab6
                 ChildForm ch = new ChildForm();
                 ch.ChildImg = new Bitmap(newImage.ImgSize.Height, newImage.ImgSize.Width);
                 ch.MdiParent = this; //set as parent
+                ch.IsNewImage = true;
                 ch.Show();
             }
         }
 
         private void openFromFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            OpenFileDialog newFile = new OpenFileDialog();
+            newFile.Filter = "jpg|*.jpg|jpeg|*.jpeg|bmp|*.bmp|gif|*.gif";
+            if(newFile.ShowDialog()==DialogResult.OK)
+            {
+                ChildForm ch = new ChildForm();
+                ch.ChildImg = Image.FromFile(newFile.FileName);
+                ch.MdiParent = this; //set as parent
+                ch.IsNewImage = false;
+                ch.Show();
+            }
         }
 
         private void openFromWebToolStripMenuItem_Click(object sender, EventArgs e)

@@ -15,9 +15,20 @@ namespace MDILab6
         //image field and property
         Graphics g;
         bool isNewImage = true; //flag to check if new or existing image
-        private Bitmap childImg;
+        public bool IsNewImage
+        {
+            get
+            {
+                return isNewImage;
+            }
+            set
+            {
+                isNewImage = value;
+            }
+        }
+        private Image childImg;
         private Size imgSize;
-        public Bitmap ChildImg
+        public Image ChildImg
         {
             get
             {
@@ -26,7 +37,6 @@ namespace MDILab6
             set
             {
                 childImg = value;
-                this.AutoScrollMinSize = childImg.Size;
             }
         }
 
@@ -46,15 +56,15 @@ namespace MDILab6
         //will check if new or existing, then paint on child forms
         private void ChildForm_Paint(object sender, PaintEventArgs e)
         {
+            this.AutoScrollMinSize = childImg.Size;
+            g = e.Graphics;
             if (isNewImage == true)
             {
-                g = e.Graphics;
                 SolidBrush b = new SolidBrush(Color.Blue);
                 g.FillRectangle(b, this.ClientRectangle);
-            }
-            else
+            } else
             {
-
+                g.DrawImage(childImg, this.AutoScrollPosition.X, this.AutoScrollPosition.Y, childImg.Width, childImg.Height);
             }
         }
     }
