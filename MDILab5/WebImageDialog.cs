@@ -12,6 +12,11 @@ namespace MDILab6
 {
     public partial class WebImageDialog : Form
     {
+        public string TextBoxURL
+        {
+            get { return textBoxURL.Text; }
+        }
+
         public WebImageDialog()
         {
             InitializeComponent();

@@ -37,25 +37,29 @@
             // labelURL
             // 
             this.labelURL.AutoSize = true;
-            this.labelURL.Location = new System.Drawing.Point(23, 9);
+            this.labelURL.Location = new System.Drawing.Point(34, 14);
+            this.labelURL.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelURL.Name = "labelURL";
-            this.labelURL.Size = new System.Drawing.Size(32, 13);
+            this.labelURL.Size = new System.Drawing.Size(46, 20);
             this.labelURL.TabIndex = 0;
             this.labelURL.Text = "URL:";
             // 
             // textBoxURL
             // 
-            this.textBoxURL.Location = new System.Drawing.Point(26, 37);
+            this.textBoxURL.Location = new System.Drawing.Point(39, 57);
+            this.textBoxURL.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxURL.Name = "textBoxURL";
-            this.textBoxURL.Size = new System.Drawing.Size(459, 20);
+            this.textBoxURL.Size = new System.Drawing.Size(686, 26);
             this.textBoxURL.TabIndex = 1;
+            this.textBoxURL.Text = "http://marsrovers.nasa.gov/gallery/press/spirit/20040326a/01-MW-01-maz-";
             // 
             // buttonOK
             // 
             this.buttonOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.buttonOK.Location = new System.Drawing.Point(26, 80);
+            this.buttonOK.Location = new System.Drawing.Point(39, 123);
+            this.buttonOK.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonOK.Name = "buttonOK";
-            this.buttonOK.Size = new System.Drawing.Size(75, 23);
+            this.buttonOK.Size = new System.Drawing.Size(112, 35);
             this.buttonOK.TabIndex = 2;
             this.buttonOK.Text = "OK";
             this.buttonOK.UseVisualStyleBackColor = true;
@@ -63,23 +67,25 @@
             // buttonCancel
             // 
             this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonCancel.Location = new System.Drawing.Point(107, 80);
+            this.buttonCancel.Location = new System.Drawing.Point(160, 123);
+            this.buttonCancel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(75, 23);
+            this.buttonCancel.Size = new System.Drawing.Size(112, 35);
             this.buttonCancel.TabIndex = 3;
             this.buttonCancel.Text = "Cancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
             // 
-            // WebForm
+            // WebImageDialog
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(539, 134);
+            this.ClientSize = new System.Drawing.Size(808, 206);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonOK);
             this.Controls.Add(this.textBoxURL);
             this.Controls.Add(this.labelURL);
-            this.Name = "WebForm";
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Name = "WebImageDialog";
             this.Text = "Web Picture";
             this.ResumeLayout(false);
             this.PerformLayout();
