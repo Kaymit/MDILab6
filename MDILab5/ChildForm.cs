@@ -13,7 +13,7 @@ namespace MDILab6
     public partial class ChildForm : Form
     {
         //image field and property
-        Graphics g;
+        Graphics gfx;
         bool isNewImage = true; //flag to check if new or existing image
         public bool IsNewImage
         {
@@ -58,14 +58,14 @@ namespace MDILab6
         private void ChildForm_Paint(object sender, PaintEventArgs e)
         {
             this.AutoScrollMinSize = childImg.Size;
-            g = e.Graphics;
+            gfx = e.Graphics;
             if (isNewImage == true)
             {
                 SolidBrush b = new SolidBrush(Color.Blue);
-                g.FillRectangle(b, this.ClientRectangle);
+                gfx.FillRectangle(b, this.ClientRectangle);
             } else
             {
-                g.DrawImage(childImg, this.AutoScrollPosition.X, this.AutoScrollPosition.Y, childImg.Width, childImg.Height);
+                gfx.DrawImage(childImg, this.AutoScrollPosition.X, this.AutoScrollPosition.Y, childImg.Width, childImg.Height);
             }
         }
     }
