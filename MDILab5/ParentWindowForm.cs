@@ -15,8 +15,6 @@ namespace MDILab6
 {
     public partial class ParentWindowForm : Form
     {
-        private string childSaveName;
-
         public ParentWindowForm()
         {
             InitializeComponent();
@@ -25,46 +23,65 @@ namespace MDILab6
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
             NewImageDialog newImage = new NewImageDialog();
-            if (newImage.ShowDialog() == DialogResult.OK)
+            try
             {
-
-                ChildForm ch = new ChildForm();
-                ch.ChildImg = new Bitmap(newImage.ImgSize.Height, newImage.ImgSize.Width);
-                ch.MdiParent = this; //set as parent
-                ch.IsNewImage = true;
-                ch.Show();
+                if (newImage.ShowDialog() == DialogResult.OK)
+                {
+                    ChildForm ch = new ChildForm();
+                    ch.ChildImg = new Bitmap(newImage.ImgSize.Height, newImage.ImgSize.Width);
+                    ch.MdiParent = this; //set as parent
+                    ch.IsNewImage = true; //property of child form
+                    ch.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                int num = (int)MessageBox.Show(ex.Message, this.Text);
             }
         }
 
         private void openFromFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenFileDialog newFile = new OpenFileDialog();
-            newFile.Filter = "jpg|*.jpg|jpeg|*.jpeg|bmp|*.bmp|gif|*.gif";
-            if (newFile.ShowDialog() == DialogResult.OK)
+            try
             {
-                ChildForm ch = new ChildForm();
-                ch.ChildImg = Image.FromFile(newFile.FileName);
-                ch.MdiParent = this; //set as parent
-                ch.IsNewImage = false;
-                ch.Text = newFile.FileName;
-                ch.Show();
+                newFile.Filter = "jpg|*.jpg|jpeg|*.jpeg|bmp|*.bmp|gif|*.gif";
+                if (newFile.ShowDialog() == DialogResult.OK)
+                {
+                    ChildForm ch = new ChildForm();
+                    ch.ChildImg = Image.FromFile(newFile.FileName);
+                    ch.MdiParent = this;
+                    ch.IsNewImage = false;
+                    ch.Text = newFile.FileName;
+                    ch.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                int num = (int)MessageBox.Show(ex.Message, this.Text);
             }
         }
 
         private void openFromWebToolStripMenuItem_Click(object sender, EventArgs e)
         {
             WebImageDialog newFile = new WebImageDialog();
-
-            if (newFile.ShowDialog() == DialogResult.OK)
+            try
             {
-                ChildForm ch = new ChildForm();
-                Stream stream = WebRequest.Create(newFile.TextBoxURL).GetResponse().GetResponseStream();
-                ch.ChildImg = Image.FromStream(stream);
-                ch.MdiParent = this; //set as parent
-                ch.IsNewImage = false;
-                ch.Show();
-                ch.Text = newFile.Text;
-                stream.Close();
+                if (newFile.ShowDialog() == DialogResult.OK)
+                {
+                    ChildForm ch = new ChildForm();
+                    Stream stream = WebRequest.Create(newFile.TextBoxURL).GetResponse().GetResponseStream();
+                    ch.ChildImg = Image.FromStream(stream);
+                    ch.MdiParent = this; //set as parent
+                    ch.IsNewImage = false;
+                    ch.Text = newFile.Text;
+                    ch.Show();
+                    stream.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                int num = (int)MessageBox.Show(ex.Message, this.Text);
             }
         }
 
@@ -80,22 +97,30 @@ namespace MDILab6
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ChildForm ch = (ChildForm)this.ActiveMdiChild;
-            if (ch == null)
-                return;
-            if (ch.Text != "ChildForm")
-            {
-                Image image = (Image)new Bitmap(ch.ChildImg.Width, ch.ChildImg.Height);
-                Graphics g = Graphics.FromImage(image);
-                g.Clear(Color.Blue);
-                g.DrawImage(ch.ChildImg, 0, 0);
-                ch.ChildImg.Dispose();
-                ch.ChildImg = image;
 
-                ch.ChildImg.Save(ch.Text, ImageFormat.Jpeg);
-            }
-            else
+            try
             {
-                saveAsToolStripMenuItem_Click(saveAsToolStripMenuItem, new EventArgs());
+                if (ch == null)
+                    return;
+                else if (ch.Text != "ChildForm")
+                {
+                    Image image = (Image)new Bitmap(ch.ChildImg.Width, ch.ChildImg.Height);
+                    Graphics g = Graphics.FromImage(image);
+                    g.Clear(Color.Blue);
+                    g.DrawImage(ch.ChildImg, 0, 0);
+                    ch.ChildImg.Dispose();
+                    ch.ChildImg = image;
+
+                    ch.ChildImg.Save(ch.Text);
+                }
+                else
+                {
+                    saveAsToolStripMenuItem_Click(saveAsToolStripMenuItem, new EventArgs());
+                }
+            }
+            catch (Exception ex)
+            {
+                int num = (int)MessageBox.Show(ex.Message, this.Text);
             }
         }
 
@@ -113,9 +138,6 @@ namespace MDILab6
                 {
                     try
                     {
-                        childSaveName = saveFileDialog.FileName;
-                       // ImageFormat format = this.GetFormat(Path.GetExtension(this.saveFileDialog.FileName));
-
                         Image image = (Image)new Bitmap(ch.ChildImg.Width, ch.ChildImg.Height);
                         Graphics g = Graphics.FromImage(image);
                         g.Clear(Color.Blue);
@@ -123,7 +145,7 @@ namespace MDILab6
                         ch.ChildImg.Dispose();
                         ch.ChildImg = image;
 
-                        ch.ChildImg.Save(saveFileDialog.FileName, ImageFormat.Jpeg);
+                        ch.ChildImg.Save(saveFileDialog.FileName);
                         ch.Text = saveFileDialog.FileName;
                     }
                     catch (Exception ex)
@@ -151,7 +173,28 @@ namespace MDILab6
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Close();
+            try
+            {
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                int num = (int)MessageBox.Show(ex.Message, this.Text);
+            }
+        }
+
+        private void fileToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
+        {
+            if (this.MdiChildren.Length == 0)
+            {
+                saveToolStripMenuItem.Enabled = false;
+                saveAsToolStripMenuItem.Enabled = false;
+            }
+            else
+            {
+                saveToolStripMenuItem.Enabled = true;
+                saveAsToolStripMenuItem.Enabled = true;
+            }
         }
     }
 }
