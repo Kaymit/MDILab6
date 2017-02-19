@@ -10,6 +10,9 @@ using System.Windows.Forms;
 
 namespace MDILab6
 {
+    /// <summary>
+    /// Dialog box to open files from the web
+    /// </summary>
     public partial class WebImageDialog : Form
     {
         public string TextBoxURL

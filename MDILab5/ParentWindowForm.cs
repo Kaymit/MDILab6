@@ -20,6 +20,11 @@ namespace MDILab6
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Creates a new image.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
             NewImageDialog newImage = new NewImageDialog();
@@ -28,7 +33,7 @@ namespace MDILab6
                 if (newImage.ShowDialog() == DialogResult.OK)
                 {
                     ChildForm child = new ChildForm();
-                    child.ChildImg = new Bitmap(newImage.ImgSize.Height, newImage.ImgSize.Width);
+                    child.ChildImg = new Bitmap(newImage.ImgSize.Height, newImage.ImgSize.Width);//creates the image
                     child.MdiParent = this; //set as parent
                     child.IsNewImage = true; //property of child form
                     child.Show();
@@ -40,19 +45,24 @@ namespace MDILab6
             }
         }
 
+        /// <summary>
+        /// Opens a file on the computer
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void openFromFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenFileDialog newFile = new OpenFileDialog();
             try
             {
-                newFile.Filter = "jpg|*.jpg|jpeg|*.jpeg|bmp|*.bmp|gif|*.gif";
+                newFile.Filter = "jpg|*.jpg|jpeg|*.jpeg|bmp|*.bmp|gif|*.gif";//specifies the image formats that can be opened
                 if (newFile.ShowDialog() == DialogResult.OK)
                 {
                     ChildForm child = new ChildForm();
-                    child.ChildImg = Image.FromFile(newFile.FileName);
-                    child.MdiParent = this;
-                    child.IsNewImage = false;
-                    child.Text = newFile.FileName;
+                    child.ChildImg = Image.FromFile(newFile.FileName);//creates the image from the file
+                    child.MdiParent = this;//set as parent
+                    child.IsNewImage = false; //property of child form
+                    child.Text = newFile.FileName; //sets the next of the new child form to the filename
                     child.Show();
                 }
             }
@@ -71,10 +81,10 @@ namespace MDILab6
                 {
                     ChildForm child = new ChildForm();
                     Stream stream = WebRequest.Create(newFile.TextBoxURL).GetResponse().GetResponseStream();
-                    child.ChildImg = Image.FromStream(stream);
+                    child.ChildImg = Image.FromStream(stream);//creates a new image from the web stream
                     child.MdiParent = this; //set as parent
-                    child.IsNewImage = false;
-                    child.Text = newFile.Text;
+                    child.IsNewImage = false; //property of child form
+                    child.Text = newFile.Text; //sets the next of the new child form to the filename
                     child.Show();
                     stream.Close();
                 }
@@ -86,7 +96,7 @@ namespace MDILab6
         }
 
         /// <summary>
-        /// 
+        /// Is called when user clicks 'Save'.
         /// </summary>
         /// <resources>
         /// https://msdn.microsoft.com/en-us/library/sfezx97z(v=vs.110).aspx
@@ -96,24 +106,23 @@ namespace MDILab6
         /// <param name="e"></param>
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ChildForm child = (ChildForm)this.ActiveMdiChild;
-
+            ChildForm child = (ChildForm)this.ActiveMdiChild; //sets the ChildForm to be saved to the active child form
             try
             {
-                if (child == null)
+                if (child == null) //if no active window, ignore
                     return;
-                else if (child.Text != "ChildForm")
+                else if (child.Text != "ChildForm")//if the current child image is not new
                 {
-                    Image image = (Image)new Bitmap(child.ChildImg.Width, child.ChildImg.Height);
+                    Image image = (Image)new Bitmap(child.ChildImg.Width, child.ChildImg.Height);//creates a new image
                     Graphics gfx = Graphics.FromImage(image);
-                    gfx.Clear(Color.Blue);
+                    gfx.Clear(Color.Blue); //sets the background color to blue if saving a blank image
                     gfx.DrawImage(child.ChildImg, 0, 0);
                     child.ChildImg.Dispose();
                     child.ChildImg = image;
 
                     child.ChildImg.Save(child.Text);
                 }
-                else
+                else//if it is new, call saveAs function
                 {
                     saveAsToolStripMenuItem_Click(saveAsToolStripMenuItem, new EventArgs());
                 }
@@ -126,7 +135,7 @@ namespace MDILab6
 
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ChildForm child = (ChildForm)this.ActiveMdiChild;
+            ChildForm child = (ChildForm)this.ActiveMdiChild;//sets the ChildForm to be saved to the active child form
             if (child == null) //if no active window, ignore
                 return;
             SaveFileDialog saveFileDialog = new SaveFileDialog();
@@ -140,7 +149,7 @@ namespace MDILab6
                     {
                         Image image = (Image)new Bitmap(child.ChildImg.Width, child.ChildImg.Height);
                         Graphics gfx = Graphics.FromImage(image);
-                        gfx.Clear(Color.Blue);
+                        gfx.Clear(Color.Blue); //sets the background color to blue if saving a blank image
                         gfx.DrawImage(child.ChildImg, 0, 0);
                         child.ChildImg.Dispose();
                         child.ChildImg = image;
@@ -156,21 +165,41 @@ namespace MDILab6
             }
         }
 
+        /// <summary>
+        /// Arranges the images into a cascade pattern
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cascadeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.LayoutMdi(MdiLayout.Cascade);
         }
 
+        /// <summary>
+        /// Arranges the images into a horizontal stack
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tileHorizontalToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.LayoutMdi(MdiLayout.TileHorizontal);
         }
 
+        /// <summary>
+        /// Arranges the images into a vertical stack
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tileVerticalToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.LayoutMdi(MdiLayout.TileVertical);
         }
 
+        /// <summary>
+        /// Closes the program
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -183,6 +212,11 @@ namespace MDILab6
             }
         }
 
+        /// <summary>
+        /// Checks to see if there are and child forms open, and if not, it disables the save and save as buttons
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void fileToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
         {
             if (this.MdiChildren.Length == 0)
