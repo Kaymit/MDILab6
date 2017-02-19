@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExitDialogue.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExitDialogue.Designer.cs">
+      <DependentUpon>ExitDialogue.cs</DependentUpon>
+    </Compile>
     <Compile Include="WebImageDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -74,6 +80,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="ChildForm.resx">
       <DependentUpon>ChildForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExitDialogue.resx">
+      <DependentUpon>ExitDialogue.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WebImageDialog.resx">
       <DependentUpon>WebImageDialog.cs</DependentUpon>

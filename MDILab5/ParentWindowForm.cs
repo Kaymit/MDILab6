@@ -196,7 +196,7 @@ namespace MDILab6
         }
 
         /// <summary>
-        /// Closes the program
+        /// Closes the program, will ask if user wants to save if there are active child forms.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -204,6 +204,21 @@ namespace MDILab6
         {
             try
             {
+
+                ChildForm activeChild = (ChildForm)this.ActiveMdiChild;//sets the ChildForm to be saved to the active child form
+                if (activeChild == null) //if no active window, close
+                    this.Close();
+
+                foreach (Form child in this.MdiChildren)
+                {
+                    ExitDialogue exit = new ExitDialogue();
+                    if (exit.ShowDialog() == DialogResult.OK)
+                    {
+                        saveAsToolStripMenuItem_Click(sender, e);
+                        child.Close();
+                        child.Dispose();
+                    }
+                }
                 this.Close();
             }
             catch (Exception ex)
