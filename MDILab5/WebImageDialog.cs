@@ -20,6 +20,7 @@ namespace MDILab6
         public WebImageDialog()
         {
             InitializeComponent();
+            this.Text = TextBoxURL;
         }
     }
 }
