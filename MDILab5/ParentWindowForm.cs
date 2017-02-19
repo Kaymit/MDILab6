@@ -29,8 +29,6 @@ namespace MDILab6
             {
 
                 ChildForm ch = new ChildForm();
-                ch.Height = newImage.ImgSize.Height;
-                ch.Width = newImage.ImgSize.Width;
                 ch.ChildImg = new Bitmap(newImage.ImgSize.Height, newImage.ImgSize.Width);
                 ch.MdiParent = this; //set as parent
                 ch.IsNewImage = true;
@@ -48,6 +46,7 @@ namespace MDILab6
                 ch.ChildImg = Image.FromFile(newFile.FileName);
                 ch.MdiParent = this; //set as parent
                 ch.IsNewImage = false;
+                ch.Text = newFile.FileName;
                 ch.Show();
             }
         }
@@ -64,6 +63,7 @@ namespace MDILab6
                 ch.MdiParent = this; //set as parent
                 ch.IsNewImage = false;
                 ch.Show();
+                ch.Text = newFile.Text;
                 stream.Close();
             }
         }
@@ -79,39 +79,57 @@ namespace MDILab6
         /// <param name="e"></param>
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ChildForm activeChild = (ChildForm)this.ActiveMdiChild;
-            if (activeChild == null)
+            ChildForm ch = (ChildForm)this.ActiveMdiChild;
+            if (ch == null)
                 return;
-            if (activeChild.Text != "ChildForm")
+            if (ch.Text != "ChildForm")
             {
-                childSaveName = activeChild.Text;
-                FileStream stream = (FileStream)saveFileDialog1.OpenFile();
-                activeChild.ChildImg.Save(saveFileDialog1.FileName);
+                Image image = (Image)new Bitmap(ch.ChildImg.Width, ch.ChildImg.Height);
+                Graphics g = Graphics.FromImage(image);
+                g.Clear(Color.Blue);
+                g.DrawImage(ch.ChildImg, 0, 0);
+                ch.ChildImg.Dispose();
+                ch.ChildImg = image;
+
+                ch.ChildImg.Save(ch.Text, ImageFormat.Jpeg);
             }
             else
             {
                 saveAsToolStripMenuItem_Click(saveAsToolStripMenuItem, new EventArgs());
             }
-        } 
+        }
 
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Console.WriteLine(e.ToString());
-            ChildForm activeChild = (ChildForm)this.ActiveMdiChild;
-            if (activeChild == null) //if no active window, ignore
+            ChildForm ch = (ChildForm)this.ActiveMdiChild;
+            if (ch == null) //if no active window, ignore
                 return;
-            saveFileDialog1 = new SaveFileDialog();
-            saveFileDialog1.Filter = "jpg|*.jpg|bmp|*.bmp|gif|*.gif";
-            saveFileDialog1.Title = "Save an Image File";
-            saveFileDialog1.ShowDialog();
-            if (saveFileDialog1.FileName != "")
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "jpg|*.jpg|bmp|*.bmp|gif|*.gif";
+            saveFileDialog.Title = "Save an Image File";
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                childSaveName = saveFileDialog1.FileName;
-                using (FileStream stream = (FileStream)saveFileDialog1.OpenFile())
+                if (saveFileDialog.FileName != "")
                 {
-                    activeChild.ChildImg.Save(saveFileDialog1.FileName);
-                    activeChild.Text = childSaveName;
+                    try
+                    {
+                        childSaveName = saveFileDialog.FileName;
+                       // ImageFormat format = this.GetFormat(Path.GetExtension(this.saveFileDialog.FileName));
 
+                        Image image = (Image)new Bitmap(ch.ChildImg.Width, ch.ChildImg.Height);
+                        Graphics g = Graphics.FromImage(image);
+                        g.Clear(Color.Blue);
+                        g.DrawImage(ch.ChildImg, 0, 0);
+                        ch.ChildImg.Dispose();
+                        ch.ChildImg = image;
+
+                        ch.ChildImg.Save(saveFileDialog.FileName, ImageFormat.Jpeg);
+                        ch.Text = saveFileDialog.FileName;
+                    }
+                    catch (Exception ex)
+                    {
+                        int num = (int)MessageBox.Show(ex.Message, this.Text);
+                    }
                 }
             }
         }
