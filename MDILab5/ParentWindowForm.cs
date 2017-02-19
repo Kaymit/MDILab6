@@ -15,7 +15,7 @@ namespace MDILab6
 {
     public partial class ParentWindowForm : Form
     {
-        private Size imgSize;
+        private string childSaveName;
 
         public ParentWindowForm()
         {
@@ -79,30 +79,39 @@ namespace MDILab6
         /// <param name="e"></param>
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+            ChildForm activeChild = (ChildForm)this.ActiveMdiChild;
+            if (activeChild == null)
+                return;
+            if (activeChild.Text != "ChildForm")
+            {
+                childSaveName = activeChild.Text;
+                FileStream stream = (FileStream)saveFileDialog1.OpenFile();
+                activeChild.ChildImg.Save(saveFileDialog1.FileName);
+            }
+            else
+            {
+                saveAsToolStripMenuItem_Click(saveAsToolStripMenuItem, new EventArgs());
+            }
         } 
 
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Console.WriteLine(e.ToString());
             ChildForm activeChild = (ChildForm)this.ActiveMdiChild;
+            if (activeChild == null) //if no active window, ignore
+                return;
             saveFileDialog1 = new SaveFileDialog();
             saveFileDialog1.Filter = "jpg|*.jpg|bmp|*.bmp|gif|*.gif";
             saveFileDialog1.Title = "Save an Image File";
             saveFileDialog1.ShowDialog();
             if (saveFileDialog1.FileName != "")
             {
-                FileStream stream = (FileStream)saveFileDialog1.OpenFile();
-                switch (saveFileDialog1.FilterIndex)
+                childSaveName = saveFileDialog1.FileName;
+                using (FileStream stream = (FileStream)saveFileDialog1.OpenFile())
                 {
-                    case 1:
-                        activeChild.ChildImg.Save(saveFileDialog1.FileName, ImageFormat.Jpeg);
-                        break;
-                    case 2:
-                        activeChild.ChildImg.Save(saveFileDialog1.FileName, ImageFormat.Bmp);
-                        break;
-                    case 3:
-                        activeChild.ChildImg.Save(saveFileDialog1.FileName, ImageFormat.Gif);
-                        break;
+                    activeChild.ChildImg.Save(saveFileDialog1.FileName);
+                    activeChild.Text = childSaveName;
+
                 }
             }
         }

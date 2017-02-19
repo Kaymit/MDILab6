@@ -26,8 +26,8 @@ namespace MDILab6
                 isNewImage = value;
             }
         }
+
         private Image childImg;
-        private Size imgSize;
         public Image ChildImg
         {
             get
@@ -40,6 +40,7 @@ namespace MDILab6
             }
         }
 
+        private Size imgSize;
         public Size ImgSize
         {
             set
@@ -53,7 +54,7 @@ namespace MDILab6
             InitializeComponent();
         }
 
-        //will check if new or existing, then paint on child forms
+        //will check if new or existing image, then paint on child forms
         private void ChildForm_Paint(object sender, PaintEventArgs e)
         {
             this.AutoScrollMinSize = childImg.Size;

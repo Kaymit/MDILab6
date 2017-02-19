@@ -36,7 +36,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 262);
             this.Name = "ChildForm";
-            this.Text = "Form2";
+            this.Text = "ChildForm";
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.ChildForm_Paint);
             this.ResumeLayout(false);
 
