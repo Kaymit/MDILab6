@@ -9,6 +9,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing.Imaging;
 
 namespace MDILab6
 {
@@ -67,14 +68,43 @@ namespace MDILab6
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <resources>
+        /// https://msdn.microsoft.com/en-us/library/sfezx97z(v=vs.110).aspx
+        /// https://msdn.microsoft.com/en-us/library/4s6dtf7z(v=vs.110).aspx
+        /// </resources>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
-        }
+            
+        } 
 
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            ChildForm activeChild = (ChildForm)this.ActiveMdiChild;
+            saveFileDialog1 = new SaveFileDialog();
+            saveFileDialog1.Filter = "jpg|*.jpg|bmp|*.bmp|gif|*.gif";
+            saveFileDialog1.Title = "Save an Image File";
+            saveFileDialog1.ShowDialog();
+            if (saveFileDialog1.FileName != "")
+            {
+                FileStream stream = (FileStream)saveFileDialog1.OpenFile();
+                switch (saveFileDialog1.FilterIndex)
+                {
+                    case 1:
+                        activeChild.ChildImg.Save(saveFileDialog1.FileName, ImageFormat.Jpeg);
+                        break;
+                    case 2:
+                        activeChild.ChildImg.Save(saveFileDialog1.FileName, ImageFormat.Bmp);
+                        break;
+                    case 3:
+                        activeChild.ChildImg.Save(saveFileDialog1.FileName, ImageFormat.Gif);
+                        break;
+                }
+            }
         }
 
         private void cascadeToolStripMenuItem_Click(object sender, EventArgs e)
