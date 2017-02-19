@@ -10,6 +10,10 @@ using System.Windows.Forms;
 
 namespace MDILab6
 {
+    /// <summary>
+    /// ChildForms are created for each of the image types (new, file, web). Their paint behaviour changes
+    /// depending on the type.
+    /// </summary>
     public partial class ChildForm : Form
     {
         //image field and property

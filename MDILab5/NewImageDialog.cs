@@ -15,7 +15,7 @@ namespace MDILab6
     /// </summary>
     public partial class NewImageDialog : Form
     {
-        private Size imgSize;//Stores the size of the new image
+        private Size imgSize; //Stores the size of the new image
 
         public Size ImgSize
         {

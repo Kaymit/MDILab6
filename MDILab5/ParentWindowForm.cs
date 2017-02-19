@@ -21,7 +21,7 @@ namespace MDILab6
         }
 
         /// <summary>
-        /// Creates a new image.
+        /// Creates a new child MDI form and inits a new Bitmap and Image
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -33,7 +33,7 @@ namespace MDILab6
                 if (newImage.ShowDialog() == DialogResult.OK)
                 {
                     ChildForm child = new ChildForm();
-                    child.ChildImg = new Bitmap(newImage.ImgSize.Height, newImage.ImgSize.Width);//creates the image
+                    child.ChildImg = new Bitmap(newImage.ImgSize.Height, newImage.ImgSize.Width); //creates the image
                     child.MdiParent = this; //set as parent
                     child.IsNewImage = true; //property of child form
                     child.Show();
@@ -46,7 +46,7 @@ namespace MDILab6
         }
 
         /// <summary>
-        /// Opens a file on the computer
+        /// Opens a file on the computer, creating a new child form
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -72,6 +72,11 @@ namespace MDILab6
             }
         }
 
+        /// <summary>
+        /// Opens a user-chosen image from the internet in a new child form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void openFromWebToolStripMenuItem_Click(object sender, EventArgs e)
         {
             WebImageDialog newFile = new WebImageDialog();
@@ -96,7 +101,7 @@ namespace MDILab6
         }
 
         /// <summary>
-        /// Is called when user clicks 'Save'.
+        /// Saves existing file. If image does not exist, saveAs will be called.
         /// </summary>
         /// <resources>
         /// https://msdn.microsoft.com/en-us/library/sfezx97z(v=vs.110).aspx
@@ -133,6 +138,11 @@ namespace MDILab6
             }
         }
 
+        /// <summary>
+        /// Allows user to choose a filepath to save the current image
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ChildForm child = (ChildForm)this.ActiveMdiChild;//sets the ChildForm to be saved to the active child form
@@ -204,7 +214,6 @@ namespace MDILab6
         {
             try
             {
-
                 ChildForm activeChild = (ChildForm)this.ActiveMdiChild;//sets the ChildForm to be saved to the active child form
                 if (activeChild == null) //if no active window, close
                     this.Close();

@@ -22,3 +22,4 @@ D:\Dropbox\BCIT\Visual Studio\MDILab6\MDILab5\obj\Debug\MDILab5.Properties.Resou
 D:\Dropbox\BCIT\Visual Studio\MDILab6\MDILab5\obj\Debug\MDILab6.csproj.GenerateResource.Cache
 D:\Dropbox\BCIT\Visual Studio\MDILab6\MDILab5\bin\Debug\MDILab5.exe
 D:\Dropbox\BCIT\Visual Studio\MDILab6\MDILab5\bin\Debug\MDILab5.pdb
+D:\Dropbox\BCIT\Visual Studio\MDILab6\MDILab5\obj\Debug\MDILab6.ExitDialogue.resources
